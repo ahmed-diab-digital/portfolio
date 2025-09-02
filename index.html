@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Diab - Engineering Leadership Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0f1419, #1a2332, #0f1419);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-name {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -3px;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            color: #e5e7eb;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-text {
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px;
+            margin-bottom: 40px;
+            gap: 4px;
+        }
+
+        .tab-button {
+            padding: 16px 32px;
+            background: transparent;
+            border: none;
+            border-radius: 16px;
+            color: #9ca3af;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: inherit;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .tab-button.active::before {
+            opacity: 1;
+        }
+
+        .tab-button.active {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .tab-button:hover:not(.active) {
+            color: #e5e7eb;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Engineering Metrics Dashboard */
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .metric-card:hover::before {
+            transform: scale(1);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+        }
+
+        .metric-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .metric-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: #e5e7eb;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .metric-description {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Skills Matrix */
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .skill-domain {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .skill-domain::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #ec4899, #22c55e);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: -200% 0; }
+            50% { background-position: 200% 0; }
+        }
+
+        .skill-domain:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-domain-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #e5e7eb;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            color: #93c5fd;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Experience Timeline */
+        .experience-timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #ec4899, #22c55e);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 50px;
+            margin-left: 80px;
+        }
+
+        .experience-marker {
+            position: absolute;
+            left: -80px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+            z-index: 2;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .experience-card:hover::before {
+            left: 100%;
+        }
+
+        .experience-card:hover {
+            transform: translateX(15px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
+        }
+
+        .job-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #e5e7eb;
+            margin-bottom: 8px;
+        }
+
+        .company-period {
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #d1d5db;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-list li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #3b82f6, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .achievement-list li:hover {
+            color: #f3f4f6;
+            transform: translateX(10px);
+        }
+
+        /* Education Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+        }
+
+        .education-card:hover::before {
+            transform: scale(1);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 25px 50px rgba(34, 197, 94, 0.2);
+        }
+
+        .education-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .degree-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e5e7eb;
+            margin-bottom: 10px;
+        }
+
+        .school-name {
+            color: #22c55e;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Leadership Philosophy */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .philosophy-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(236, 72, 153, 0.2);
+        }
+
+        .philosophy-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ec4899, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .philosophy-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e5e7eb;
+            margin-bottom: 15px;
+        }
+
+        .philosophy-text {
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        /* About Text */
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(236, 72, 153, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, rgba(59, 130, 246, 0.1), rgba(236, 72, 153, 0.1), rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            animation: rotate 15s linear infinite;
+            z-index: -1;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #ec4899, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #d1d5db;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Interest Tags */
+        .interests-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .interest-tag {
+            padding: 12px 24px;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            border-radius: 25px;
+            color: #f9a8d4;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .interest-tag:hover::before {
+            left: 100%;
+        }
+
+        .interest-tag:hover {
+            background: rgba(236, 72, 153, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 25px;
+            }
+            
+            .hero-name {
+                font-size: 3rem;
+            }
+            
+            .tab-navigation {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .tab-button {
+                width: 200px;
+            }
+            
+            .content-section {
+                padding: 30px 25px;
+            }
+            
+            .experience-item {
+                margin-left: 60px;
+            }
+            
+            .timeline-line {
+                left: 20px;
+            }
+            
+            .experience-marker {
+                left: -70px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 250px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2563eb, #db2777);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-name">AHMED DIAB</div>
+            <div class="hero-title">Senior Global Software Applications Engineer</div>
+            <div class="hero-subtitle">Strategic Application Engineering • Automation Systems • Global Technology Integration</div>
+            
+            <div class="contact-grid">
+                <div class="contact-card" onclick="window.location.href='tel:334-354-9661'">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-text">334-354-9661</div>
+                </div>
+                <div class="contact-card" onclick="window.location.href='mailto:ahmadkuk4@gmail.com'">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">ahmadkuk4@gmail.com</div>
+                </div>
+                <div class="contact-card" onclick="window.open('https://www.linkedin.com/in/ahmed-diab-mba-ms', '_blank')">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-text">LinkedIn Profile</div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">Raleigh, North Carolina</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-navigation">
+            <button class="tab-button active" onclick="showTab('overview')">
+                <span>🎯 Overview</span>
+            </button>
+            <button class="tab-button" onclick="showTab('engineering')">
+                <span>⚙️ Engineering Excellence</span>
+            </button>
+            <button class="tab-button" onclick="showTab('leadership')">
+                <span>👥 Leadership Impact</span>
+            </button>
+            <button class="tab-button" onclick="showTab('experience')">
+                <span>🚀 Experience</span>
+            </button>
+            <button class="tab-button" onclick="showTab('connect')">
+                <span>💼 Let's Connect</span>
+            </button>
+        </nav>
+
+        <!-- Tab Content: Overview -->
+        <div id="overview" class="tab-content active">
+            <div class="content-section">
+                <h2 class="section-title">Engineering Leadership Profile</h2>
+                <p class="about-text">
+                    <span class="highlight">Versatile, results-driven Senior Application Engineer</span> with over 10 years of experience leading cross-functional teams and delivering transformative business solutions that drive operational efficiency and support strategic objectives. Specialized in <span class="highlight">automation systems, material handling technologies, and global technology integration</span> across manufacturing, healthcare, and enterprise environments.
+                </p>
+                <p class="about-text">
+                    Expert in bridging the gap between complex business requirements and innovative technical solutions, with a proven track record of <span class="highlight">customer-facing implementation and stakeholder management</span>. Demonstrated success in leading global installations of AI-driven systems, PLCs, HMIs, and SAP databases while maintaining industry best practices and delivering measurable business impact.
+                </p>
+
+                <div class="metrics-dashboard">
+                    <div class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-number">25%</div>
+                        <div class="metric-label">Productivity Increase</div>
+                        <div class="metric-description">Manufacturing efficiency gains through automation</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🛡️</div>
+                        <div class="metric-number">15%</div>
+                        <div class="metric-label">System Reliability</div>
+                        <div class="metric-description">Equipment stability improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⏱️</div>
+                        <div class="metric-number">20%</div>
+                        <div class="metric-label">Downtime Reduction</div>
+                        <div class="metric-description">Through preventive maintenance strategies</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🌍</div>
+                        <div class="metric-number">10+</div>
+                        <div class="metric-label">Years Global Impact</div>
+                        <div class="metric-description">International team leadership</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Engineering Excellence -->
+        <div id="engineering" class="tab-content">
+            <div class="content-section">
+                <h2 class="section-title">Engineering Excellence</h2>
+                <p class="section-subtitle">Advanced technical competencies driving innovation and operational excellence</p>
+                
+                <div class="skills-matrix">
+                    <div class="skill-domain">
+                        <div class="skill-domain-title">
+                            <span class="skill-icon">🔧</span>
+                            Automation & Integration
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Global Automation Systems</span>
+                            <span class="skill-tag">Material Handling Systems</span>
+                            <span class="skill-tag">AI-Driven Technology</span>
+                            <span class="skill-tag">HMI/PLC Programming</span>
+                            <span class="skill-tag">SAP Database Management</span>
+                            <span class="skill-tag">SolidWorks Design</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-domain">
+                        <div class="skill-domain-title">
+                            <span class="skill-icon">📊</span>
+                            Business Intelligence
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Requirements Analysis</span>
+                            <span class="skill-tag">Process Modeling</span>
+                            <span class="skill-tag">OEE Metrics Implementation</span>
+                            <span class="skill-tag">Power BI & Tableau</span>
+                            <span class="skill-tag">SQL & Data Analysis</span>
+                            <span class="skill-tag">Workflow Optimization</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-domain">
+                        <div class="skill-domain-title">
+                            <span class="skill-icon">🏗️</span>
+                            Enterprise Architecture
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Solution Architecture</span>
+                            <span class="skill-tag">System Integration</span>
+                            <span class="skill-tag">Technology Roadmaps</span>
+                            <span class="skill-tag">SaaS Implementation</span>
+                            <span class="skill-tag">Network Infrastructure</span>
+                            <span class="skill-tag">Security Protocols</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-domain">
+                        <div class="skill-domain-title">
+                            <span class="skill-icon">⚙️</span>
+                            Advanced Technologies
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">IoT Systems</span>
+                            <span class="skill-tag">Smart Manufacturing</span>
+                            <span class="skill-tag">Digital Transformation</span>
+                            <span class="skill-tag">Preventive Maintenance</span>
+                            <span class="skill-tag">Performance Analytics</span>
+                            <span class="skill-tag">Innovation Strategy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 25px; font-weight: 700;">Technical Achievements</h3>
+                    <div class="achievement-list">
+                        <li>Architected and deployed global automation systems across multiple international manufacturing facilities</li>
+                        <li>Led implementation of AI-driven material handling solutions, resulting in 25% manufacturing productivity gains</li>
+                        <li>Designed and executed comprehensive technology integration strategies for Fortune 500 companies</li>
+                        <li>Developed advanced OEE metrics frameworks using Agile methodologies and data analytics</li>
+                        <li>Implemented enterprise-scale SAP and SaaS solutions with 99.9% uptime achievements</li>
+                        <li>Created innovative preventive maintenance protocols reducing equipment failures by 20%</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Leadership Impact -->
+        <div id="leadership" class="tab-content">
+            <div class="content-section">
+                <h2 class="section-title">Leadership Philosophy</h2>
+                <p class="section-subtitle">Driving transformation through people, process, and technology</p>
+                
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">🎯</div>
+                        <div class="philosophy-title">Strategic Vision</div>
+                        <div class="philosophy-text">Translating complex business requirements into actionable technology roadmaps that deliver measurable ROI and competitive advantage</div>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">🌍</div>
+                        <div class="philosophy-title">Global Collaboration</div>
+                        <div class="philosophy-text">Leading international teams across time zones and cultures, fostering innovation through diverse perspectives and inclusive leadership</div>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">🚀</div>
+                        <div class="philosophy-title">Innovation Drive</div>
+                        <div class="philosophy-text">Championing cutting-edge automation technologies and AI-driven solutions that transform traditional manufacturing processes</div>
+                    </div>
+                    
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">⚡</div>
+                        <div class="philosophy-title">Agile Excellence</div>
+                        <div class="philosophy-text">Implementing lean methodologies and continuous improvement frameworks that accelerate delivery and enhance quality</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 25px; font-weight: 700;">Leadership Accomplishments</h3>
+                    <div class="achievement-list">
+                        <li>Led cross-functional teams of 15+ engineers across 5 international locations</li>
+                        <li>Mentored junior engineers globally, developing next-generation technical talent</li>
+                        <li>Managed $2M+ technology integration projects from conception to deployment</li>
+                        <li>Established vendor partnerships and strategic alliances with leading automation providers</li>
+                        <li>Developed training programs and technical documentation used across global operations</li>
+                        <li>Championed digital transformation initiatives resulting in enterprise-wide efficiency gains</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Experience -->
+        <div id="experience" class="tab-content">
+            <div class="content-section">
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-subtitle">A decade of engineering excellence and transformational leadership</p>
+                
+                <div class="experience-timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
+                        <div class="experience-card">
+                            <div class="job-title">Senior Global Software Applications Engineer</div>
+                            <div class="company-period">SICK Sensor Intelligence • Oct 2022 - Present</div>
+                            <ul class="achievement-list">
+                                <li>Led global installation of automation and material handling systems, AI-driven technologies, HMIs, PLCs, and SAP databases across international manufacturing facilities</li>
+                                <li>Implemented OEE metrics and Agile methodologies, achieving 25% increase in manufacturing productivity and optimized material handling processes</li>
+                                <li>Provided enterprise-level technical support for SAP and SaaS solutions, improving equipment stability by 15% and enhancing hardware performance</li>
+                                <li>Mentored international engineering teams and collaborated with global customers to deliver strategic automation solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
+                        <div class="experience-card">
+                            <div class="job-title">IT Client Services Administrator</div>
+                            <div class="company-period">University of Alabama at Birmingham • Jan 2019 - Oct 2022</div>
+                            <ul class="achievement-list">
+                                <li>Spearheaded infrastructure projects improving system reliability by 15% and reducing outages by 20% in critical healthcare environments</li>
+                                <li>Collaborated with vendors and stakeholders to ensure seamless integration of automation and handling equipment in educational settings</li>
+                                <li>Delivered technical solutions aligned with institutional goals while maintaining HIPAA compliance and regulatory standards</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
+                        <div class="experience-card">
+                            <div class="job-title">Advanced Technology Integration Systems Engineer</div>
+                            <div class="company-period">Rheem Manufacturing (Contract) • Aug 2019 - Dec 2019</div>
+                            <ul class="achievement-list">
+                                <li>Orchestrated complex software-hardware integration with comprehensive testing protocols, ensuring optimal device performance</li>
+                                <li>Implemented preventive maintenance strategies, reducing equipment downtime by 20% and significantly improving system reliability</li>
+                                <li>Collaborated with engineering teams and regulatory specialists on innovative device design and advanced technology implementation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
+                        <div class="experience-card">
+                            <div class="job-title">Network Solutions Administrator</div>
+                            <div class="company-period">Montgomery Public Schools • Nov 2017 - Dec 2018</div>
+                            <ul class="achievement-list">
+                                <li>Managed enterprise network infrastructure, ensuring continuous connectivity and data integrity across multiple campus locations</li>
+                                <li>Implemented comprehensive network security upgrades, mitigating cybersecurity threats and enhancing data security posture</li>
+                                <li>Delivered specialized technical support minimizing disruptions and ensuring seamless operational continuity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Education & Certifications -->
+        <div id="education" class="tab-content">
+            <div class="content-section">
+                <h2 class="section-title">Academic Excellence</h2>
+                <p class="section-subtitle">Advanced education in business technology and information systems</p>
+                
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-icon">🎓</div>
+                        <div class="degree-title">Master of Science</div>
+                        <div class="school-name">Business Management Information Systems</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">University of Alabama at Birmingham</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-icon">📚</div>
+                        <div class="degree-title">Bachelor of Science</div>
+                        <div class="school-name">Information Systems</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">University of Alabama at Birmingham</div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 2rem; color: #e5e7eb; margin: 50px 0 30px 0; font-weight: 700; text-align: center;">Professional Certifications</h3>
+                
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-icon">🏆</div>
+                        <div class="degree-title">Project Management Professional</div>
+                        <div class="school-name">Google PMP Certification</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">2024</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-icon">💻</div>
+                        <div class="degree-title">CompTIA A+</div>
+                        <div class="school-name">Hardware & Software Systems</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">2015</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-icon">🌐</div>
+                        <div class="degree-title">Network+ Certification</div>
+                        <div class="school-name">Network Infrastructure</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">CompTIA • 2016</div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-icon">🖥️</div>
+                        <div class="degree-title">IC3 Certification</div>
+                        <div class="school-name">Internet & Computing Core</div>
+                        <div style="color: #9ca3af; margin-top: 5px;">Certiport • 2015</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Connect -->
+        <div id="connect" class="tab-content">
+            <div class="cta-section">
+                <div class="cta-title">Ready to Engineer the Future</div>
+                <div class="cta-text">
+                    Let's discuss how my expertise in automation systems, global technology integration, and strategic leadership can accelerate your organization's digital transformation goals and drive unprecedented operational excellence.
+                </div>
+                <div class="cta-buttons">
+                    <a href="mailto:ahmadkuk4@gmail.com?subject=Engineering Opportunity Discussion" class="cta-button">
+                        📧 Schedule Discussion
+                    </a>
+                    <a href="tel:334-354-9661" class="cta-button secondary">
+                        📱 Direct Contact
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 25px; font-weight: 700; text-align: center;">Beyond Engineering</h3>
+                <p class="about-text" style="text-align: center; margin-bottom: 30px;">
+                    Passionate about continuous learning, cultural exchange, and bringing diverse perspectives to technical problem-solving and team collaboration.
+                </p>
+                <div class="interests-container">
+                    <div class="interest-tag">🌟 Certified Cupping Therapy Practitioner</div>
+                    <div class="interest-tag">🔌 IoT Systems Innovation</div>
+                    <div class="interest-tag">🎭 Al-Nujoom Performance Team</div>
+                    <div class="interest-tag">🌍 Cultural Exploration</div>
+                    <div class="interest-tag">✈️ International Travel</div>
+                    <div class="interest-tag">🍽️ Culinary Adventures</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('.tab-button');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.closest('.tab-button').classList.add('active');
+            
+            // Add animation delay for smooth transition
+            setTimeout(() => {
+                const activeTab = document.getElementById(tabId);
+                activeTab.style.animation = 'fadeInUp 0.6s ease-out';
+            }, 50);
+        }
+
+        // Enhanced scroll effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+                hero.style.opacity = Math.max(0.3, 1 - scrolled * 0.002);
+            }
+        });
+
+        // Intersection Observer for advanced animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.metric-card, .skill-domain, .experience-card, .education-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Advanced hover effects for metric cards
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05)';
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Smooth tab transitions with sound effect simulation
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Dynamic particle system for hero section
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+                particle.style.background = '#3b82f6';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.opacity = '0.6';
+                particle.style.animation = `floatParticle ${5 + Math.random() * 10}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                hero.appendChild(particle);
+            }
+        }
+
+        // Add particle animation
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes floatParticle {
+                0%, 100% { 
+                    transform: translateY(0px) translateX(0px);
+                    opacity: 0.6;
+                }
+                50% { 
+                    transform: translateY(-20px) translateX(10px);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+
+        // Initialize particles after page load
+        window.addEventListener('load', createParticles);
+
+        // Add keyboard navigation for tabs
+        document.addEventListener('keydown', function(e) {
+            if (e.altKey) {
+                const tabs = ['overview', 'engineering', 'leadership', 'experience', 'connect'];
+                const currentTab = document.querySelector('.tab-content.active').id;
+                const currentIndex = tabs.indexOf(currentTab);
+                
+                if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    showTab(tabs[currentIndex - 1]);
+                    document.querySelector(`[onclick="showTab('${tabs[currentIndex - 1]}')"]`).focus();
+                } else if (e.key === 'ArrowRight' && currentIndex < tabs.length - 1) {
+                    showTab(tabs[currentIndex + 1]);
+                    document.querySelector(`[onclick="showTab('${tabs[currentIndex + 1]}')"]`).focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+            
